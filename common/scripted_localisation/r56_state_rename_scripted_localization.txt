@@ -16419,12 +16419,40 @@ defined_text = {
 		localization_key = STATE_601
 	}
 	text = {
+		trigger = {
+			controller = {
+				OR = {
+					original_tag = CHI
+					original_tag = PRC
+					original_tag = XSM
+					original_tag = TNG
+					original_tag = SIK
+					original_tag = SHX
+					original_tag = YUN
+					original_tag = GXC
+					original_tag = MEN
+					original_tag = MAN
+				}
+			}
+		}
+		localization_key = STATE_601_CHI #Western Xikang
+	}
+	text = {
 		trigger = { #default name if none of the above is controller OR prohibited in game rules
 			OR = {
 				has_global_flag = r56_state_renaming_prohibited_flag
 				controller = {
 					NOT = {
-						original_tag = FAK
+						original_tag = CHI
+						original_tag = PRC
+						original_tag = XSM
+						original_tag = TNG
+						original_tag = SIK
+						original_tag = SHX
+						original_tag = YUN
+						original_tag = GXC
+						original_tag = MEN
+						original_tag = MAN
 					}
 				}
 			}
@@ -16500,12 +16528,20 @@ defined_text = {
 		localization_key = STATE_604
 	}
 	text = {
+		trigger = {
+			controller = {
+				original_tag = TIB
+			}
+		}
+		localization_key = STATE_604_TIB #Eastern Kham
+	}
+	text = {
 		trigger = { #default name if none of the above is controller OR prohibited in game rules
 			OR = {
 				has_global_flag = r56_state_renaming_prohibited_flag
 				controller = {
 					NOT = {
-						original_tag = FAK
+						original_tag = TIB
 					}
 				}
 			}
@@ -20496,12 +20532,20 @@ defined_text = {
 		localization_key = STATE_752
 	}
 	text = {
+		trigger = {
+			controller = {
+				original_tag = TIB
+			}
+		}
+		localization_key = STATE_752_TIB #Eastern Kham
+	}
+	text = {
 		trigger = { #default name if none of the above is controller OR prohibited in game rules
 			OR = {
 				has_global_flag = r56_state_renaming_prohibited_flag
 				controller = {
 					NOT = {
-						original_tag = FAK
+						original_tag = TIB
 					}
 				}
 			}
