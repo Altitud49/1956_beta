@@ -1,6 +1,6 @@
 characters={
 	TIB_namgang_dazang_damdu={
-		name="Namgang Dazang Damdu" # = Tsarong_Tsaza
+		name="Tsarong Dasang Dramdul" # = Tsarong_Tsaza
 		portraits={
 			civilian={
 				large="gfx/leaders/TIB/r56_portrait_TIB_Tsarong_Tsaza.dds"
@@ -165,7 +165,23 @@ characters={
 			}
 		}		
 	}
-
+	TIB_gendun_chophel={
+		name="Thubten Kunphela"
+		portraits={
+			civilian={
+				large="gfx/leaders/TIB/r56_portrait_TIB_Gendun_Chophel.dds"
+			}
+		}
+		country_leader={
+			ideology = syndicalism
+			traits = {
+				revolutionary_author hedonist
+			}
+			expire="1956.1.1.12"
+			id=-1
+		}	
+		name=TIB_gendun_chophel
+	}
 	TIB_jamphel_yeshe_gyaltsen={
 		name="Jamphel Yeshe Gyaltsen"
 		portraits={
@@ -225,16 +241,14 @@ characters={
 			}
 		}
 		field_marshal = {
-			traits = { defensive_doctrine old_guard bad_staffer}
-			skill = 1
+			traits = { defensive_doctrine old_guard }
+			skill = 2
 			attack_skill = 1
-			defense_skill = 1
+			defense_skill = 3
 			planning_skill = 1
-			logistics_skill = 1			
+			logistics_skill = 2			
 		}
 	}	
-
-	
 	TIB_phuntsog_rabgye={
 		advisor={	
 			slot = army_chief
@@ -397,11 +411,57 @@ characters={
 			}
 		}
 		corps_commander = {
-			traits = { trait_mountaineer winter_specialist old_guard bad_staffer}
+			traits = { trait_mountaineer winter_specialist }
 			skill = 2
 			attack_skill = 2					
-			defense_skill = 3
+			defense_skill = 2
 			planning_skill = 1
+			logistics_skill = 2
+		}		
+	}
+	TIB_zompu_thubten_wangchuk={
+		advisor={
+			slot = high_command
+			idea_token = TIB_yutok_tashi_dondrub
+			ledger = army
+				allowed = {
+					original_tag = TIB
+				}
+				traits = {
+					army_chief_morale_2
+				}
+				cost = 100
+				ai_will_do = {
+					factor = 1.000
+				}
+		}
+		advisor={
+			cost = 100
+			
+			slot = theorist
+			idea_token = TIB_yutok_tashi_dondrub2
+			ledger = army
+			allowed = {
+				original_tag = TIB
+			}
+			
+			traits = {
+				military_theorist
+			}
+		}		
+		name=TIB_zompu_thubten_wangchuk
+		portraits={
+			army={
+				small="GFX_idea_TIB_zompu_thubten_wangchuk"
+				large="gfx/leaders/TIB/r56_portrait_TIB_Zompu_Thubten_Wangchuk.dds"
+			}
+		}
+		corps_commander = {
+			traits = { trait_mountaineer infantry_officer war_hero }
+			skill = 2
+			attack_skill = 2					
+			defense_skill = 2
+			planning_skill = 2
 			logistics_skill = 1	
 		}		
 	}
@@ -422,15 +482,13 @@ characters={
 				}
 		}		
 		advisor={
-			
-			
 			slot = air_chief
 			idea_token = TIB_wangchen_geleg_surkhang
 			allowed = {
 				original_tag = TIB
 			}
 			available = {
-				NOT = { has_idea = TIB_wangchen_geleg_surkhang2}
+				NOT = { has_idea = TIB_wangchen_geleg_surkhang2 }
 			}
 			traits = {
 				air_chief_safety_2
@@ -441,7 +499,7 @@ characters={
 			}
 		}
 		corps_commander = {
-			traits = { winter_specialist old_guard bad_staffer}
+			traits = { winter_specialist old_guard }
 			skill = 1
 			attack_skill = 1					
 			defense_skill = 1
@@ -458,8 +516,6 @@ characters={
 	}	
 	TIB_tendong_shappe={  #real name Gyurme Gyatso
 		advisor={
-			
-			
 			slot = high_command
 			idea_token = TIB_tendong_shappe
 			ledger = navy

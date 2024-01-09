@@ -145,10 +145,15 @@ l_english:
  TIB_rinzin_dorji:0 "Rinzin Dorji Ringang"
  TIB_changra_sapron:0 "Changra Sapron"
  TIB_thubten_kunphela:0 "Thubten Kunphela"
+ TIB_zompu_thubten_wangchuk:0 "Zompü Thubten Wangchuk"
+ TIB_gendun_chophel:0 "Gendün Chöphel"
 
+ #IDEAS
  TIB_mountainous_people:0 "Mountainous People"
  TIB_mountainous_people_desc:0 "The [ROOT.getAdjective] people tend to live at high altitude and therefore are used to travel in such harsh conditions."
  TIB_montainous_people_effect:0 "Infantry: §G+10%§! §YSpeed§! and §G+2%§! §YAttack§! on §CMountains§!"
+ TIB_the_disaster_of_1932:0 "The Disaster of 1932"
+ TIB_prevailing_serfdom:0 "Prevailing Serfdom"
  TIB_poorly_organized_army:0 "Poorly Organized Army"
  TIB_poorly_organized_army_desc:0 "Due to the pressure of the aristocracy to avoid a strong central power, the Tibetan army is completely ill equipped and ill prepared. Some rifles have not been fired for years and only the guard of the Dalai Lama is more or less properly organized."
  TIB_army_reform_in_progress:0 "Army Reform in Progress"

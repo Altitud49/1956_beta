@@ -2294,6 +2294,10 @@ spriteType = {
 		name = "GFX_idea_TIB_monasteries_elated"
 		texturefile = "gfx/interface/ideas/tib/r56_idea_TIB_elated_monasteries.dds"
 	}
+	spriteType = {
+		name = "GFX_idea_TIB_prevailing_serfdom"
+		texturefile = "gfx/interface/ideas/tib/r56_idea_TIB_prevailing_serfdom.dds"
+	}
 	###------> URG <><> <><> <><> <><> <><>
 	spriteType = {
 		name = "GFX_idea_URG_legacy_of_batlle"
