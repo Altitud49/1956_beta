@@ -166,7 +166,6 @@ characters={
 		}		
 	}
 	TIB_gendun_chophel={
-		name="Thubten Kunphela"
 		portraits={
 			civilian={
 				large="gfx/leaders/TIB/r56_portrait_TIB_Gendun_Chophel.dds"
@@ -181,6 +180,22 @@ characters={
 			id=-1
 		}	
 		name=TIB_gendun_chophel
+	}
+	TIB_gompo_tashi={
+		name="Gompo Tashi"
+		portraits={
+			civilian={
+				large="gfx/leaders/TIB/r56_portrait_TIB_Gompo_Tashi.dds"
+			}
+		}
+		country_leader={
+			ideology = fascism_ideology
+			traits = {
+				resilient_nationalist well_connected_businessman
+			}
+			expire="1956.1.1.12"
+			id=-1
+		}	
 	}
 	TIB_jamphel_yeshe_gyaltsen={
 		name="Jamphel Yeshe Gyaltsen"

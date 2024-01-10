@@ -3810,6 +3810,11 @@ spriteTypes = {
 		texturefile = "gfx/event_pictures/TIB/report_event_picture_TIB_soccer.dds"
 	}
 
+	spriteType = {
+		name = "GFX_report_event_picture_trimons_resignation"
+		texturefile = "gfx/event_pictures/TIB/report_event_picture_TIB_trimons_resignation.dds"
+	}
+
 ###------> TUR <><> <><> <><> <><> <><>
 	spriteType = {
 		name = "GFX_event_turkey_alexandretta_march"
