@@ -1347,6 +1347,78 @@ ENG_crush_golden_square_IRQ = {
 	}
 }
 
+
+r56_ENG_crush_PER = { 
+	allowed = {
+		original_tag = ENG
+	}
+
+	enable = {
+		ROOT = {
+			exists = yes
+			has_war_with = PER
+			surrender_progress < 0.03
+			NOT = {
+				has_war_with = SOV
+			}
+			NOT = { #This is more important if I have war with them
+				has_war_with = JAP
+			}
+		}
+		RAJ = {
+			exists = yes
+			is_neighbor_of = PER
+			is_subject_of = ROOT
+		}
+		date > 1940.1.1
+		PER = { 
+			exists = yes
+			has_war_with = SOV
+			has_capitulated = no
+			is_ai = yes
+		}
+	}
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = front_control
+
+		tag = PER
+
+		ratio = 0.20
+
+		priority = 1
+		ordertype = front
+		execution_type = rush
+		execute_order = yes
+	}
+
+	ai_strategy = { #do a funny
+		type = invade
+		id = "PER"			
+		value = 125
+	}
+
+	ai_strategy = { #The funny in question
+		type = invasion_unit_request
+		state = 980
+		value = 250
+	}
+
+	ai_strategy = { #The funny in question
+		type = invasion_unit_request
+		state = 981
+		value = 250
+	}
+
+	ai_strategy = { #The funny in question
+		type = invasion_unit_request
+		state = 413
+		value = 500
+	}
+}
+
 ENG_suez_is_getting_dangerous = { 
 	allowed = {
 		original_tag = ENG
@@ -1386,7 +1458,7 @@ ENG_suez_is_getting_dangerous = {
 			447
 			452
 		}
-		ratio = 0.15
+		ratio = 0.16
 		area = suez
 		subtract_invasions_from_need = no
 		subtract_fronts_from_need = no
@@ -1424,7 +1496,7 @@ ENG_stop_soviet_from_falling = {
 	ai_strategy = {
 		type = support
 		id = "SOV"
-		value = 300
+		value = 350
 	}	
 
 	ai_strategy = {
@@ -1505,7 +1577,7 @@ r56_ENG_hunker_down_and_get_to_bussiness = {
 
 	ai_strategy = {
 		type = put_unit_buffers
-		ratio = 0.40
+		ratio = 0.35
 		states = { #Isles
 			127
 			123
@@ -1529,5 +1601,45 @@ r56_ENG_hunker_down_and_get_to_bussiness = {
 		subtract_fronts_from_need = yes
 		subtract_invasions_from_need = yes
 	}
+}
 
+r56_ENG_dont_turn_ECU_PRU_war_into_WW3 = {
+	allowed = {
+		original_tag = ENG
+	}
+
+	enable = {
+		ROOT = {
+			is_faction_leader = yes
+		}
+		AND = {
+			PRU = {
+				exists = yes
+				has_war_with = ECU
+				is_in_faction = no
+				is_ai = yes
+			}
+			ECU = {
+				exists = yes
+				has_war = yes
+				is_in_faction = no
+				is_ai = yes
+			}
+		}
+    }
+		
+	abort_when_not_enabled = yes
+	
+	
+	ai_strategy = {
+		type = alliance
+		id = "PRU"
+		value = -75
+	}
+
+	ai_strategy = {
+		type = alliance
+		id = "ECU"
+		value = -75
+	}
 }

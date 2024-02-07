@@ -76,7 +76,7 @@ FIN_unit_production = {
 	ai_strategy = {
 		type = unit_ratio
 		id = fighter
-		value = 100 #The only thing that matters
+		value = 0 #The only thing that matters
 	}
 }
 
@@ -123,85 +123,85 @@ FIN_we_just_need_div_in_the_field_not_guns = { #Finnish AI fills out it's frontl
 	ai_strategy = { #go for broke
 		type = pp_spend_priority
 		id = mobilization_laws
-		value = 275
+		value = 350
 	}
 
 	ai_strategy = { #go for broke
 		type = pp_spend_priority
 		id = economy
-		value = 250
+		value = 350
 	}
 
 	ai_strategy = {
         type = force_build_armies
-        value = 250
+        value = 275
     }
 
 	ai_strategy = { #Change templates and do it fast
 		type = land_xp_spend_priority
 		id = division_template
-		value = 250
+		value = 275
 	}
 }
 
 
-FIN_self_nerf_to_build_planes_and_to_also_force_soviets_to_use_air_resources = { #Finnish AI builds some figthers to be annoying
-	allowed = {
-		original_tag = FIN
-	}
+# FIN_self_nerf_to_build_planes_and_to_also_force_soviets_to_use_air_resources = { #Finnish AI builds some figthers to be annoying
+# 	allowed = {
+# 		original_tag = FIN
+# 	}
 
-	enable = {
-		ROOT = {
-			exists = yes
-			has_completed_focus = fin_fighterfocus
-		}
-	}
+# 	enable = {
+# 		ROOT = {
+# 			exists = yes
+# 			has_completed_focus = fin_fighterfocus
+# 		}
+# 	}
 
-	abort_when_not_enabled = yes
+# 	abort_when_not_enabled = yes
 
-	ai_strategy = {
-		type = equipment_production_min_factories
-		id = fighter
-		value = 1
-	} 
-}
-
-
-
-FIN_screen_spam_to_be_annoying = { #Finnish AI builds some screen ships to be annoying to soviets
-	allowed = {
-		original_tag = FIN
-	}
-
-	enable = {
-		ROOT = {
-			exists = yes
-			has_completed_focus = fin_navy
-		}
-	}
-
-	abort_when_not_enabled = yes
+# 	ai_strategy = {
+# 		type = equipment_production_min_factories
+# 		id = fighter
+# 		value = 1
+# 	} 
+# }
 
 
-	ai_strategy = {
-		type = unit_ratio
-		id = screen_ship
-		value = 80
-	}
 
-	ai_strategy = {
-		type = unit_ratio
-		id = convoy
-		value = 20
-	}
+# FIN_sub_spam_to_be_annoying = { #Finnish AI builds some sub ships to be annoying to soviets
+# 	allowed = {
+# 		original_tag = FIN
+# 	}
 
-	ai_strategy = {
-		type = equipment_production_min_factories
-		id = convoy
-		value = 1
-	} 
+# 	enable = {
+# 		ROOT = {
+# 			exists = yes
+# 			has_completed_focus = fin_navy
+# 		}
+# 	}
 
-}
+# 	abort_when_not_enabled = yes
+
+
+# 	ai_strategy = {
+# 		type = unit_ratio
+# 		id = submarine
+# 		value = 80
+# 	}
+
+# 	ai_strategy = {
+# 		type = unit_ratio
+# 		id = convoy
+# 		value = 20
+# 	}
+
+# 	ai_strategy = { #these are still needed first when I have one dockyard
+# 		type = equipment_production_min_factories
+# 		id = convoy
+# 		value = 1
+# 	} 
+
+# }
 
 
 FIN_we_just_need_to_hold_the_line_not_go_for_it_vs_sovs = { #Finnish AI takes mercy on Soviets even if the front is weak
@@ -211,11 +211,11 @@ FIN_we_just_need_to_hold_the_line_not_go_for_it_vs_sovs = { #Finnish AI takes me
 
 	enable = {
 		ROOT = {
-			has_completed_focus = fin_germantreatyfoc
+			#has_completed_focus = fin_germantreatyfoc
 			exists = yes
 			has_country_flag = r56_fin_trigger_con_war_front_control
 		}
-		date > 1940.1.1
+		date > 1940.1.1 #Date check to be safe
 		GER = { 
 			exists = yes
 			has_offensive_war_with = SOV 
@@ -232,7 +232,7 @@ FIN_we_just_need_to_hold_the_line_not_go_for_it_vs_sovs = { #Finnish AI takes me
 
 		tag = SOV
 
-		ratio = 0.90
+		ratio = 0.85
 
 		priority = 100
 		ordertype = front
@@ -246,9 +246,44 @@ FIN_we_just_need_to_hold_the_line_not_go_for_it_vs_sovs = { #Finnish AI takes me
 		id = SOV
 		states = {
 			215
+			216
 		}
 	}
 }
+
+FINS_we_need_to_defend_the_coastline = {
+
+	allowed = {
+		original_tag = FIN
+	}
+
+	enable = {
+		ROOT = {
+			has_war_with_major = yes
+			exists = yes
+		}
+	}
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = garrison_reinforcement_priority
+		value = 55
+	}
+
+	ai_strategy = {
+		type = put_unit_buffers
+		ratio = 0.16
+		states = { #Common naval invasion targets for AI
+			111
+			146
+			32
+			149
+		}
+		subtract_fronts_from_need = yes
+	}
+}
+
 
 SOV_we_just_need_to_hold_the_line_not_go_for_it_vs_FINS = { #Soviet AI takes mercy on Fins even if the front is weak
 	allowed = {
@@ -264,10 +299,12 @@ SOV_we_just_need_to_hold_the_line_not_go_for_it_vs_FINS = { #Soviet AI takes mer
 		}
 		FIN = {
 			is_ai = yes
-			has_completed_focus = fin_germantreatyfoc
+			OR = {
+				has_completed_focus = fin_germantreatyfoc
+				date > 1941.2.2
+			}
 			has_country_flag = r56_fin_trigger_con_war_front_control
 		}
-		date > 1940.1.1
 		GER = { 
 			exists = yes
 			has_offensive_war_with = ROOT
@@ -284,7 +321,7 @@ SOV_we_just_need_to_hold_the_line_not_go_for_it_vs_FINS = { #Soviet AI takes mer
 
 		tag = FIN
 
-		ratio = 0.09
+		ratio = 0.10
 
 		priority = 0
 		ordertype = front
@@ -331,11 +368,77 @@ SOV_we_just_need_to_hold_the_line_not_go_for_it_vs_FINS_player_scary_doe = {
 
 		tag = FIN
 
-		ratio = 0.11
+		ratio = 0.14
 
 		priority = 0
 		ordertype = front
 		execution_type = careful
 		execute_order = no
+	}
+}
+
+r56_FIN_why_standup_for_PER = { 
+	allowed = {
+		original_tag = FIN
+	}
+
+	enable = {
+		ROOT = {
+			exists = yes
+			has_war_with = SOV
+			has_government = democratic
+			NOT = {
+				has_war_with = ENG
+			}
+		}
+		SOV = {
+			exists = yes
+			has_war_with = PER
+			is_neighbor_of = PER
+			has_completed_focus = SOV_preemptive_invasion_of_iran
+			NOT = {
+				has_war_with = ENG
+			}
+			NOT = { #This is more important if I have war with them
+				has_war_with = JAP
+			}
+		}
+		date > 1940.1.1
+		PER = { 
+			exists = yes
+			has_capitulated = no
+			is_ai = yes
+			has_war_with = ENG
+			NOT = {
+				has_government = democratic
+			}
+		}
+	}
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = dont_join_wars_with
+		id = PER
+		value = 250
+		target_country = ENG
+	}
+
+	ai_strategy = {
+		type = protect
+		id = PER
+		value = -75
+	}
+
+	ai_strategy = {
+		type = alliance
+		id = PER
+		value = -75
+	}
+
+	ai_strategy = {
+		type = befriend
+		id = PER
+		value = -25
 	}
 }

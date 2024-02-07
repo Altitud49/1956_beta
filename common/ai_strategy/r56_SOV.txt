@@ -343,23 +343,27 @@ R56_SOV_dont_switch_start_t26_production_to_bt7_right_away = { #Allows soviets t
 	enable = {
 		exists = yes
 		date < "1938.3.1" #we can switch after this
-		NOT = {
-			has_war_with = MAN
-		}
+		has_war = no
 	}
 
 	abort_when_not_enabled = yes
 
 	ai_strategy = {
+		type = equipment_variant_production_factor
+		id = heavy_tank_chassis
+		value = -500
+	}
+
+	ai_strategy = {
 		type = production_upgrade_desire_offset
 		id = light_tank_chassis_2
-		value = -300
+		value = -375
 	}
 
 	ai_strategy = { #don't switch tp A20 when we don't have tech yet
 		type = production_upgrade_desire_offset
 		id = medium_tank_chassis_1
-		value = -375
+		value = -500
 	}	
 	
 	ai_strategy = { #Side not don't send tanks here just from them to die to low supply. Okay?
@@ -371,14 +375,15 @@ R56_SOV_dont_switch_start_t26_production_to_bt7_right_away = { #Allows soviets t
 	ai_strategy = { #Side not don't send tanks here just from them to die to low supply. Okay?
 		type = prepare_for_war
 		id = "MAN"			
-		value = -100
+		value = -125
 	}
 
 	ai_strategy = { 
 		type = save_equipment
 		id = medium_tank_chassis
-		value = 100
+		value = 250
 	}
+
 }
 
 R56_SOV_t34_time = { 
@@ -898,9 +903,6 @@ r56_SOV_bad_kid_TAN = {
 		id = "TAN"			
 		value = 500
 	}
-
-
-	
 }
 
 r56_SOV_treat_BRA_bad_untill_they_do_something_or_if_the_time_is_good = { #used to prevent ealry WW2's
@@ -1493,4 +1495,163 @@ SOV_far_east_is_worthless = {
 		id = JAP
 		value = 250
 	}
+}
+
+r56_SOV_dont_turn_ECU_PRU_war_into_WW3 = {
+	allowed = {
+		original_tag = SOV
+	}
+
+	enable = {
+		ROOT = {
+			is_faction_leader = yes
+		}
+		AND = {
+			PRU = {
+				exists = yes
+				has_war_with = ECU
+				is_in_faction = no
+				is_ai = yes
+			}
+			ECU = {
+				exists = yes
+				has_war = yes
+				is_in_faction = no
+				is_ai = yes
+			}
+		}
+    }
+		
+	abort_when_not_enabled = yes
+	
+	
+	ai_strategy = {
+		type = alliance
+		id = "PRU"
+		value = -75
+	}
+
+	ai_strategy = {
+		type = alliance
+		id = "ECU"
+		value = -75
+	}
+}
+
+r56_SOV_crush_PER = { 
+	allowed = {
+		original_tag = SOV
+	}
+
+	enable = {
+		ROOT = {
+			exists = yes
+			has_war_with = PER
+			surrender_progress < 0.51
+			has_full_control_of_state = 231
+			has_full_control_of_state = 232
+			is_neighbor_of = PER
+			has_completed_focus = SOV_preemptive_invasion_of_iran
+			NOT = {
+				has_war_with = ENG
+			}
+			NOT = { #This is more important if I have war with them
+				has_war_with = JAP
+			}
+		}
+		date > 1940.1.1
+		PER = { 
+			exists = yes
+			has_capitulated = no
+			is_ai = yes
+		}
+	}
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = front_control
+
+		tag = PER
+
+		ratio = 0.11
+
+		priority = 1
+		ordertype = front
+		execution_type = rush
+		execute_order = yes
+	}
+
+	ai_strategy = { #Do a funny
+		type = invade
+		id = "PER"			
+		value = 250
+	}
+
+	ai_strategy = { #The funny in question
+		type = invasion_unit_request
+		state = 420
+		value = 500
+	}
+}
+
+r56_sov_dont_help_kurds_if_it_could_game_ruin = { #im fine with this alt history but lets make sure it doesn't mess things up first
+	allowed = {
+		original_tag = SOV
+	}
+
+	enable = {
+		ROOT = {
+			exists = yes
+			has_capitulated = no
+			has_war = no
+			is_faction_leader = yes
+		}
+		KUR = { 
+			exists = yes
+			has_capitulated = no
+			is_ai = yes #help player no matter what 
+			has_war_with = TUR
+			is_in_faction = no
+		}
+		TUR = {
+			exists = yes
+			has_capitulated = no
+			OR = { #game ruining setups
+				is_ai = no #don't mess with a player
+				is_in_faction_with = ENG
+				is_in_faction_with = GER
+				is_in_faction_with = FRA
+				is_in_faction_with = JAP
+				is_in_faction_with = USA
+				is_guaranteed_by = GER
+				is_guaranteed_by = ENG
+				is_guaranteed_by = FRA
+				is_guaranteed_by = USA
+			}
+		}
+	}
+
+	abort_when_not_enabled = yes
+
+
+	ai_strategy = {
+		type = dont_join_wars_with
+		id = KUR
+		value = 500
+		target_country = TUR
+	}
+
+	ai_strategy = {
+		type = protect
+		id = KUR
+		value = -500
+	}
+
+	ai_strategy = {
+		type = alliance
+		id = KUR
+		value = -500
+	}
+
 }

@@ -1723,18 +1723,91 @@ r56_commies_aint_a_big_happy_family = { #Used to discourge early game commie fac
 	ai_strategy = {
 		type = befriend
 		id = SOV
-		value = -50
+		value = -75
 	}
 	ai_strategy = {
 		type = alliance
 		id = SOV
-		value = -25
+		value = -50
 	}
 	ai_strategy = {
 		type = send_volunteers_desire
 		id = SOV			
-		value = -10
+		value = -25
 	}
+}
+
+r56_dont_pull_the_soviets_into_your_bs = { #Used to discourge early game commie factions that cause a three way WW2. Also prevents alt history from being commie sided
+	allowed = {
+		ROOT = {
+			exists = yes
+		}
+	}
+
+	enable = {
+		ROOT = {
+			has_government = communism
+			OR = {
+				has_war_with = ENG
+				has_war_with = GER
+			}
+			OR = {
+				is_in_faction_with = SOV
+				is_in_faction = no
+			}
+			NOT = {
+				original_tag = SOV
+				original_tag = SPR
+				original_tag = MON
+				original_tag = TAN
+			}
+		}
+
+		SOV = {
+			AND = {
+				has_government = communism
+				is_faction_leader = yes
+				is_ai = yes
+				is_major = yes
+				NOT = {
+					OR = {
+						has_war_with = ENG
+						has_war_with = GER
+					}
+				}
+			}
+		}
+	}
+	
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = alliance
+		id = SOV
+		value = -500
+	}
+
+	ai_strategy = {
+		type = diplo_action_desire
+		id = SOV
+		value = -250
+		target = call_allies
+	}
+
+	ai_strategy = {
+		type = diplo_action_desire
+		id = MON
+		value = -250
+		target = call_allies
+	}
+
+	ai_strategy = {
+		type = diplo_action_desire
+		id = TAN
+		value = -250
+		target = call_allies
+	}
+
 }
 
 #Middle East at-large strats 
@@ -2580,7 +2653,7 @@ r56_latin_america_be_nice_to_germany_early = {
 	ai_strategy = {
 		type = befriend
 		id = "GER"	
-		value = 15
+		value = 25
 	}
 }
 
@@ -2712,25 +2785,25 @@ r56_latin_armerica_nice_demo_boy_stays_home_unless_something_goes_wrong = {
 	ai_strategy = {
 		type = dont_defend_ally_borders
 		id = "USA"
-		value = 125
+		value = 500
 	}
 
 	ai_strategy = {
 		type = dont_defend_ally_borders
 		id = "ENG"
-		value = 125
+		value = 500
 	}
 
 	ai_strategy = {
 		type = area_priority
 		id = north_america
-		value = 175 #it's my home after all
+		value = 250 #it's my home after all
 	}
 
 	ai_strategy = {
 		type = area_priority
 		id = south_america
-		value = 175 #it's my home after all
+		value = 250 #it's my home after all
 	}
 
 	ai_strategy = {
@@ -2741,36 +2814,36 @@ r56_latin_armerica_nice_demo_boy_stays_home_unless_something_goes_wrong = {
 	ai_strategy = {
 		type = area_priority
 		id = asia
-		value = 0
+		value = -25
 	}
 
 	ai_strategy = {
 		type = area_priority
 		id = middle_east
-		value = 0
+		value = -25
 	}
 	ai_strategy = {
 		type = area_priority
 		id = suez
-		value = 0
+		value = -25
 	}
 
 	ai_strategy = {
 		type = area_priority
 		id = africa
-		value = 10
+		value = -25
 	}
 
 	ai_strategy = {
 		type = area_priority
 		id = pacific
-		value = 10
+		value = -25
 	}
 
 	ai_strategy = {
 		type = area_priority
 		id = oceania
-		value = 0
+		value = -25
 	}
 
 }
@@ -3072,19 +3145,19 @@ r56_axis_east_africa_is_a_lost_cause = {
 	ai_strategy = {
 		type = area_priority
 		id = east_africa
-		value = -120 #just stay away from there
+		value = -125 #just stay away from there
 	}
 	
 	ai_strategy = {
 		type = area_priority
 		id = horn_of_africa
-		value = -120 #just stay away from there
+		value = -125 #just stay away from there
 	}
 	
 	ai_strategy = {
 		type = area_priority
 		id = africa
-		value = -30
+		value = -35
 	}
 	
 	ai_strategy = {
@@ -3092,17 +3165,23 @@ r56_axis_east_africa_is_a_lost_cause = {
 		id = "AOI"
 		value = 300
 	}
+
+	ai_strategy = {
+		type = dont_defend_ally_borders
+		id = "ETH"
+		value = 300
+	}
 	
 	ai_strategy = {
 		type = front_unit_request
 		area = east_africa
-		value = -120
+		value = -150
 	}	
 	
 	ai_strategy = {
 		type = front_unit_request
 		area = horn_of_africa
-		value = -120
+		value = -150
 	}
 
 }
@@ -3157,25 +3236,25 @@ r56_bail_out_the_soviets = { #til the bitter end focus reward
 	ai_strategy = {
 		type = send_lend_lease_desire
 		id = SOV
-		value = 250
+		value = 275
 	}
 
 	ai_strategy = {
 		type = support
 		id = SOV
-		value = 250
+		value = 275
 	}
 	
 	ai_strategy = {
 		type = send_volunteers_desire
 		id = SOV
-		value = 250
+		value = 175
 	}
 
 	ai_strategy = {
 		type = diplo_action_acceptance
 		id = SOV
-		value = 75
+		value = 125
 		target = send_volunteers
 	}
 
@@ -3184,8 +3263,17 @@ r56_bail_out_the_soviets = { #til the bitter end focus reward
 force_build_no_div = {
 	allowed = {
 		exists = yes
+		NOT = {
+			OR = {
+				original_tag = SAN
+				original_tag = MNC
+				original_tag = LIE
+				original_tag = ADR
+				original_tag = BHU
+			}
+		}
 	}
-	enable = { num_divisions < 2 }
+	enable = { num_divisions < 1 }
 
 	abort_when_not_enabled = yes
 	
@@ -3197,15 +3285,12 @@ force_build_no_div_is_major = {
 		is_major = yes
 	}
 	enable = { 
-		num_divisions < 80
+		num_divisions < 24
 	}
-
 	abort_when_not_enabled = yes
 	
 	ai_strategy = { type = force_build_armies value = 1 }
 }
-
-
 
 # ___ ___  ___  ___  _   _  ___ _____ ___ ___  _  _ 
 #| _ \ _ \/ _ \|   \| | | |/ __|_   _|_ _/ _ \| \| |
@@ -3503,12 +3588,68 @@ default_supply_truck_major = {
 }
 
 default_infantry_equipment = {
-	enable = { num_of_military_factories > 1 }
+	enable = { num_of_military_factories > 0 }
 	abort = { always = no }
 
 	ai_strategy = {
 		type = equipment_production_min_factories
 		id = infantry
+		value = 1
+	}
+}
+
+default_support_equipment = { #Even if you have a stockpile AI, it needs to be bigger cause you'll burn though it fast
+	enable = { 
+		num_of_military_factories > 2
+		OR = { 
+			has_template_containing_unit = engineer
+			has_template_containing_unit = recon
+			is_major = yes
+		}
+	}
+	 
+	abort = { always = no }
+
+	ai_strategy = {
+		type = equipment_production_min_factories
+		id = support_equipment #ERROR LOG LIES, THIS IS WORKING!
+		value = 1
+	}
+}
+
+default_artillery_equipment = { #Even if you have a stockpile AI, it needs to be bigger cause you'll burn though it fast
+	enable = { 
+		num_of_military_factories > 1
+		OR = { 
+			has_template_containing_unit = artillery
+			has_template_containing_unit = artillery_brigade
+			is_major = yes
+		}
+	}
+	 
+	abort = { always = no }
+
+	ai_strategy = {
+		type = equipment_production_min_factories
+		id = artillery
+		value = 1
+	}
+}
+
+default_anti_air_equipment = { #Even if you have a stockpile AI, it needs to be bigger cause you'll burn though it fast
+	enable = { 
+		num_of_military_factories > 3
+		OR = { 
+			has_template_containing_unit = anti_air
+			has_template_containing_unit = anti_air_brigade
+		}
+	}
+	 
+	abort = { always = no }
+
+	ai_strategy = {
+		type = equipment_production_min_factories
+		id = anti_air
 		value = 1
 	}
 }
@@ -3523,7 +3664,7 @@ default_infantry_equipment_major = {
 	ai_strategy = {
 		type = equipment_production_min_factories
 		id = infantry
-		value = 1
+		value = 2
 	}
 }
 
@@ -3536,11 +3677,11 @@ default_infantry_equipment_major_at_war = {
 	ai_strategy = {
 		type = equipment_production_min_factories
 		id = infantry
-		value = 2
+		value = 3
 	}
 }
 
-#Good idea, but in pratice this fucks up too many other strats - Spicyalfredo , Yes it seems it would not work - Abbus
+#Good idea, but in pratice this fucks up to many other strats - Spicyalfredo , Yes it seems it would not work - Abbus
 #excess_equipment_production_1 = {
 # 	enable = {
 # 		has_equipment = { infantry_equipment > 75000 }
@@ -3672,7 +3813,6 @@ stop_convoy_production_major = {
 		is_major = yes
 		has_equipment = { convoy > 1000 } 
 	}
-	
 
 	abort_when_not_enabled = yes
 	
@@ -3732,42 +3872,42 @@ convoy_factory_assignment_1 = {
 	enable = { num_of_naval_factories > 1 }
 	abort = { always = no }
 	
-	ai_strategy = { type = equipment_production_min_factories       id = convoy           value = 1 }
+	ai_strategy = { type = equipment_production_min_factories id = convoy value = 1 }
 }
 
 convoy_factory_assignment_2 = {
 	enable = { num_of_naval_factories > 14 }
 	abort = {  num_of_naval_factories < 15 }
 	
-	ai_strategy = { type = equipment_production_min_factories       id = convoy           value = 1 }
+	ai_strategy = { type = equipment_production_min_factories id = convoy value = 1 }
 }
 
 convoy_factory_assignment_2 = {
 	enable = { num_of_naval_factories > 29 }
 	abort = {  num_of_naval_factories < 30 }
 
-	ai_strategy = { type = equipment_production_min_factories       id = convoy            value = 1 }
+	ai_strategy = { type = equipment_production_min_factories id = convoy value = 1 }
 }
 
 convoy_factory_assignment_3 = {
 	enable = { num_of_naval_factories > 44 }
 	abort = {  num_of_naval_factories < 45 }
 
-	ai_strategy = { type = equipment_production_min_factories       id = convoy            value = 1 }
+	ai_strategy = { type = equipment_production_min_factories id = convoy value = 1 }
 }
 
-#anti air
-anti_air_factory_assignment_1 = {
-	enable = { 
-		AND = {
-			num_of_military_factories > 19 
-			is_major = yes
-		}
-	}
-	abort = {  num_of_military_factories < 20 }
+# #anti air
+# anti_air_factory_assignment_1 = {
+# 	enable = { 
+# 		AND = {
+# 			num_of_military_factories > 19 
+# 			is_major = yes
+# 		}
+# 	}
+# 	abort = {  num_of_military_factories < 20 }
 	
-	ai_strategy = { type = equipment_production_min_factories       id = anti_air            value = 1 }
-}
+# 	ai_strategy = { type = equipment_production_min_factories  id = anti_air            value = 1 }
+# }
 
 #anti_air_factory_assignment_2 = {
 #	enable = {
